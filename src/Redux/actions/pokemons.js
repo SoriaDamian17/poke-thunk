@@ -1,5 +1,5 @@
 import { pokeConstanst } from "../../constanst/pokemons";
-import PokeApi from "../../api/pokemon";
+// import PokeApi from "../../api/pokemon";
 
 const startGetPokemons = payload => ({
     type: pokeConstanst.START_GET_POKEMONS,
@@ -11,11 +11,12 @@ const successGetPokemons = payload => ({
     ...payload
 });
 
-export const fetchPokemons = () => {
-    return dispatch => {
-        dispatch(startGetPokemons());
-        const response = PokeApi.get('pokemon');
-        console.log(response);
-        dispatch(successGetPokemons(response));
-    };
+export const fetchPokemons = () => dispatch => {
+    dispatch(startGetPokemons());
+    fetch('https://pokeapi.co/api/v2/pokemon')
+    .then(resp => resp.json)
+    .then(result => dispatch(successGetPokemons(result)));
+    // const response = PokeApi.get('pokemon');
+    // console.log(response);
+    // dispatch(successGetPokemons(response));
 };

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { fetchPokemons } from '../Redux/actions/pokemons';
 import Layout from '../components/Layout';
 
@@ -8,6 +8,9 @@ import '../styles/home.scss';
 export default () => {
 
     const dispatch = useDispatch();
+    const pokemonsList = useSelector(state => {
+        console.log(state);
+    });
     const [pokemons, setPokemons] = useState([]);
 
     useEffect(() => {
@@ -15,6 +18,7 @@ export default () => {
             dispatch(fetchPokemons());
             setPokemons([{}, {}]);
         }
+        console.log(pokemonsList);
     });
 
     return (
