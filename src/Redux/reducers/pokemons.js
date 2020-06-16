@@ -5,10 +5,9 @@ const initialState = [];
 function pokeReducer(state = initialState, { type, payload}) {
     switch(type) {
         case pokeConstanst.SUCCESS_GET_POKEMONS:
-            return {
-                ...state,
-                payload
-            };
+            return [
+                ...payload
+            ];
         default:
             return state;
     }
